@@ -35,3 +35,32 @@ def train_model(df_features):
     rmse = np.sqrt(mean_squared_error(y_test, predictions))
 
     return model, mae, rmse
+def forecast_future(model, df_features, forecast_horizon=8):
+    """
+    Recursive 8-week forecasting
+    """
+    df_temp = df_features.copy()
+
+    future_predictions = []
+
+    for _ in range(forecast_horizon):
+        X_last = df_temp.drop(columns=["date", "material", "demand"]).iloc[-1:]
+        next_pred = model.predict(X_last)[0]
+
+        future_predictions.append(next_pred)
+
+        # Create new row
+        new_row = df_temp.iloc[-1:].copy()
+        new_row["demand"] = next_pred
+
+        # Update lag features
+        new_row["lag_1"] = df_temp.iloc[-1]["demand"]
+        new_row["lag_2"] = df_temp.iloc[-1]["lag_1"]
+        new_row["lag_4"] = df_temp.iloc[-1]["lag_2"]
+        new_row["rolling_mean_4"] = (
+            df_temp["demand"].iloc[-4:].mean()
+        )
+
+        df_temp = pd.concat([df_temp, new_row], ignore_index=True)
+
+    return future_predictions
