@@ -1,0 +1,92 @@
+/* PAGE BACKGROUND */
+
+.stApp {
+    background-color: #dbe4ef !important;
+}
+
+
+/* FORCE SIDEBAR COLOR OVERRIDE */
+
+section[data-testid="stSidebar"] {
+    background-color: #dbe4ef !important;
+}
+
+
+/* REMOVE TOP GAP */
+
+section[data-testid="stSidebar"] > div:first-child {
+    padding-top: 0.5rem;
+}
+
+
+/* NAVIGATION CARD */
+
+section[data-testid="stSidebar"] .block-container {
+
+    background: #f3f7fc;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+}
+
+
+/* METRIC CARDS */
+
+[data-testid="metric-container"] {
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 10px;
+
+    border: 1px solid #d4dce7;
+
+}
+
+
+/* CHART CARD */
+
+.element-container:has(canvas) {
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    border: 1px solid #d4dce7;
+
+}
+
+
+/* DATA TABLE */
+
+[data-testid="stDataFrame"] {
+
+    background: #dee7f2;
+
+    border-radius: 10px;
+
+    border: 1px solid #cfd8e5;
+
+}
+
+/* FORCE MAIN PAGE BACKGROUND */
+
+.main {
+    background-color: #e6edf6 !important;
+}
+
+.block-container {
+    background-color: #e6edf6 !important;
+}
+
+
+/* REMOVE WHITE PAGE BLOCK */
+
+section.main > div {
+    background-color: #e6edf6 !important;
+}
